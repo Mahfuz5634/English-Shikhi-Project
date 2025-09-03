@@ -14,13 +14,25 @@ const wordload = (no) => {
 const loadwordData = (data) => {
    const wordContainer=document.getElementById('word-container-section');
    wordContainer.innerHTML='';
+    
+   if(data.length==0){
+    wordContainer.innerHTML=`
+    <div class="col-span-full text-center p-10">
+            <img class="mx-auto" src="./assets/alert-error.png" alt="">
+            <h1 class="opacity-80 text-1xl font-bangla mb-4">এই Lesson এ এখনও শব্দ যুক্ত করা হয়নি  </h1>
+            <h1 class="text-3xl font-bangla font-bold">অন্য একটি Lesson Select করুন।</h1>
+        </div>
+    `;
+   }
+
    for(const dt of data){
     const newword=document.createElement('div');
     newword.innerHTML=`
     <div class="text-center bg-white p-10 h-full shadow-indigo-100 rounded-md">
-        <h1 class="text-2xl font-bold m-3">${dt.word}</h1>
+        <h1 class="text-2xl font-bold m-3">${dt.word?dt.word:"পাওয়া যায়নি"}</h1>
         <h4 class="font-semibold font-bangla m-3">Meaning /Pronounciation</h4>
-        <h1 class="text-1xl m-3">"${dt.meaning}/ ${dt.pronunciation}"</h1>
+        <h1 class="text-1xl m-3">"${dt.meaning?dt.meaning:"পাওয়া যায়নি"
+        }/ ${dt.pronunciation?dt.pronunciation:"পাওয়া যায়নি"}"</h1>
 
         <div class="flex justify-between items-center mt-10">
             <button class="btn bg-[#e8f4ff] h-[56px] w-[56px] rounded-md flex justify-center items-center"><i class="fa-solid fa-circle-info"></i></button>
