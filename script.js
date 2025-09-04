@@ -15,8 +15,9 @@ const worddetails = async (id) => {
 
 const displayworddetails = (word)=>{
     const modaldata=document.getElementById('modal-container');
-    modaldata.innerText='On the procees';
+    modaldata.innerHTML=`<h1>Working On it</h1>`;
     document.getElementById('my_modal_5').showModal();
+
 }
 
 
