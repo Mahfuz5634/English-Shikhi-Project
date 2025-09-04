@@ -4,6 +4,19 @@ const loadLessson = () => {
     .then((json) => displayData(json.data));
 };
 
+//mange-spinner
+
+const managespinner =(status)=>{
+   if(status==true){
+    document.getElementById("spinner").classList.remove("hidden");
+     document.getElementById("word-container-section").classList.add("hidden");
+    }
+    else{
+      document.getElementById("spinner").classList.add("hidden");
+     document.getElementById("word-container-section").classList.remove("hidden");
+    }
+}
+
 // loadworddetail
 
 const worddetails = async (id) => {
@@ -13,15 +26,41 @@ const worddetails = async (id) => {
   displayworddetails(details.data)
 };
 
+const createElements = (arr) => {
+  const htmlElements = arr.map((el) => `<span class="btn">${el}</span>`);
+  return(htmlElements.join(" "));
+};
+
 const displayworddetails = (word)=>{
-    const modaldata=document.getElementById('modal-container');
-    modaldata.innerHTML=`<h1>Working On it</h1>`;
+    const modaldata=document.getElementById("modal-container");
+    modaldata.innerHTML=`<div class="">
+            <h2 class="text-2xl font-bold">
+              ${word.word} (<i class="fa-solid fa-microphone-lines"></i> :${
+    word.pronunciation
+  })
+            </h2>
+          </div>
+          <div class="">
+            <h2 class="font-bold">Meaning</h2>
+            <p>${word.meaning}</p>
+          </div>
+          <div class="">
+            <h2 class="font-bold">Example</h2>
+            <p>${word.sentence}</p>
+          </div>
+          <div class="">
+            <h2 class="font-bold">Synonym</h2>
+            <div class="">${createElements(word.synonyms)}</div>
+          </div>
+    `;
     document.getElementById('my_modal_5').showModal();
 
 }
 
 
+
 const wordload = (no) => {
+  managespinner(true);
   const url = `https://openapi.programming-hero.com/api/level/${no}`;
   fetch(url)
     .then((res) => res.json())
@@ -38,6 +77,7 @@ const wordload = (no) => {
 };
 
 const loadwordData = (data) => {
+   managespinner(true);
   const wordContainer = document.getElementById("word-container-section");
   wordContainer.innerHTML = "";
 
@@ -49,6 +89,8 @@ const loadwordData = (data) => {
             <h1 class="text-3xl font-bangla font-bold">অন্য একটি Lesson Select করুন।</h1>
         </div>
     `;
+     managespinner(false);
+     return;
   }
 
   for (const dt of data) {
@@ -70,6 +112,7 @@ const loadwordData = (data) => {
       </div>
     `;
     wordContainer.appendChild(newword);
+     managespinner(false);
   }
 };
 
