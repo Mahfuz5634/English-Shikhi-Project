@@ -17,6 +17,16 @@ const managespinner =(status)=>{
     }
 }
 
+//speak-word
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
+
+
+
 // loadworddetail
 
 const worddetails = async (id) => {
@@ -107,7 +117,7 @@ const loadwordData = (data) => {
             <button onclick="worddetails(${
               dt.id
             })" class="btn bg-[#e8f4ff] h-[56px] w-[56px] rounded-md flex justify-center items-center"><i class="fa-solid fa-circle-info"></i></button>
-           <button class="btn bg-[#e8f4ff] h-[56px] w-[56px] rounded-md flex justify-center  items-center"> <i class="fa-solid fa-volume-high"></i></button>
+           <button onclick="pronounceWord('${dt.word}')" class="btn bg-[#e8f4ff] h-[56px] w-[56px] rounded-md flex justify-center  items-center"> <i class="fa-solid fa-volume-high"></i></button>
         </div>
       </div>
     `;
