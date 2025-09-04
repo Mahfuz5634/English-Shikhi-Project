@@ -8,7 +8,15 @@ const wordload = (no) => {
   const url = `https://openapi.programming-hero.com/api/level/${no}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => loadwordData(data.data));
+    .then((data) =>{
+      const allbuttonclass=document.getElementsByClassName('btn-class');
+      for(const it of allbuttonclass){
+        it.classList.remove('btn-design');
+      }
+
+      const allbutton=document.getElementById(`btn-id-${no}`);
+      allbutton.classList.add('btn-design');
+      loadwordData(data.data)});
 };
 
 const loadwordData = (data) => {
@@ -50,7 +58,7 @@ const displayData = (data) => {
   for (const dta of data) {
     const adddata = document.createElement("div");
     adddata.innerHTML = `
-         <button onclick="wordload(${dta.level_no})" class="btn btn-outline btn-primary">
+         <button id="btn-id-${dta.level_no}" onclick="wordload(${dta.level_no})" class="btn-class btn btn-outline btn-primary">
          <i class="fa-brands fa-leanpub"></i>Lesson - ${dta.level_no}
          </button>
               
