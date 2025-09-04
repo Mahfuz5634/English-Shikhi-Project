@@ -29,10 +29,10 @@ const loadwordData = (data) => {
     const newword=document.createElement('div');
     newword.innerHTML=`
     <div class="text-center bg-white p-10 h-full shadow-indigo-100 rounded-md">
-        <h1 class="text-2xl font-bold m-3">${dt.word?dt.word:"পাওয়া যায়নি"}</h1>
+        <h1 class="text-2xl font-bold m-3">${dt.word?dt.word:"🚫"}</h1>
         <h4 class="font-semibold font-bangla m-3">Meaning /Pronounciation</h4>
-        <h1 class="text-1xl m-3">"${dt.meaning?dt.meaning:"পাওয়া যায়নি"
-        }/ ${dt.pronunciation?dt.pronunciation:"পাওয়া যায়নি"}"</h1>
+        <h1 class="text-1xl m-3">"${dt.meaning?dt.meaning:"🚫"
+        }/ ${dt.pronunciation?dt.pronunciation:"🚫"}"</h1>
 
         <div class="flex justify-between items-center mt-10">
             <button class="btn bg-[#e8f4ff] h-[56px] w-[56px] rounded-md flex justify-center items-center"><i class="fa-solid fa-circle-info"></i></button>
